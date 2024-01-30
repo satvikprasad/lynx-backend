@@ -18,7 +18,7 @@ type MongoDB struct {
 
 func CreateMongoDB() (DB, error) {
 	if err := godotenv.Load(); err != nil {
-		return nil, fmt.Errorf("Error loading .env file")
+		fmt.Println("Error loading .env file")
 	}
 
 	uri := os.Getenv("MONGODB_URI")
