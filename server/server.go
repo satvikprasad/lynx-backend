@@ -39,13 +39,14 @@ func (c *Context) WriteString(code int, v string) {
 	c.context.String(code, v)
 }
 
-func (c *Context) WriteHTML(code int, v string) {
-	c.context.Header("Content-Type", "text/html")
-	c.context.String(code, v)
+func (c *Context) WriteHTML(code int, v string, obj any) {
+	c.context.HTML(code, v, obj)
 }
 
 func CreateServer(db db.DB, port string) *Server {
 	r := gin.Default()
+	r.LoadHTMLGlob("templates/**/*")
+	r.Static("/static/assets", "./assets")
 
 	config := cors.DefaultConfig()
 	config.AllowAllOrigins = true

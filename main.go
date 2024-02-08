@@ -17,7 +17,7 @@ type MetricRequest struct {
 
 func main() {
 	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file")
+		log.Println("Error loading .env file")
 	}
 
 	port := os.Getenv("PORT")
@@ -33,6 +33,26 @@ func main() {
 	defer db.Disconnect()
 
 	s := server.CreateServer(db, port)
+
+	s.Get("/", func(c *server.Context) error {
+		c.WriteHTML(200, "home/index.tmpl", nil)
+		return nil
+	})
+
+	s.Get("/download", func(c *server.Context) error {
+		c.WriteHTML(200, "home/index.tmpl", nil)
+		return nil
+	})
+
+	s.Get("/home-page", func(c *server.Context) error {
+		c.WriteHTML(200, "home/home.tmpl", nil)
+		return nil
+	})
+
+	s.Get("/download-page", func(c *server.Context) error {
+		c.WriteHTML(200, "home/download.tmpl", nil)
+		return nil
+	})
 
 	s.Get("/api/v1/health", func(c *server.Context) error {
 		c.WriteJSON(200, map[string]string{"status": "ok"})
