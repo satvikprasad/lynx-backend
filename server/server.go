@@ -50,7 +50,6 @@ func CreateServer(db db.DB, port string) *Server {
 
 	config := cors.DefaultConfig()
 	config.AllowAllOrigins = true
-
 	r.Use(cors.New(config))
 
 	return &Server{

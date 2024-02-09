@@ -4,6 +4,7 @@
     <head>
         <title>Home</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="icon" href="/static/assets/logo/logo-light.png">
     </head>
 </head>
 <body>
@@ -15,12 +16,19 @@
         toggleDarkMode = function() {
             darkMode = !darkMode;
             document.body.dataset.bsTheme = darkMode ? "dark" : "light";
-            document.getElementById("dm-toggle").innerText = darkMode ? "Join the Light" : "Join the Dark";
+            document.getElementById("dm-toggle").innerText = darkMode ? "Light On" : "Light Off";
+
+            var logos = document.getElementsByClassName("image-logo");
+            for (var i = 0; i < logos.length; ++i) {
+                logos[i].src = darkMode ? "/static/assets/logo/logo-dark.png" : "/static/assets/logo/logo-light.png";
+            }
         }
     </script>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid mx-auto">
-            <a class="navbar-brand" href="/" hx-get="/home-page" hx-target="#content" hx-trigger="load click" hx-replace-url="/">Vizzy</a>
+            <a class="navbar-brand" href="/" hx-get="/home-page" hx-target="#content" hx-trigger="load click" hx-replace-url="/">
+                <img class="image-logo" src="/static/assets/logo/logo-light.png" alt="Vizzy" width="50" height="50" class="d-inline-block align-text-top">
+            </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -31,7 +39,7 @@
                     </li>
                 </ul>
             </div>
-            <button id="dm-toggle" class="btn btn-primary" onclick="toggleDarkMode()">Join the Dark</button>
+            <button id="dm-toggle" class="btn btn-primary" onclick="toggleDarkMode()">Light Off</button>
         </div>
     </nav>
     <div class="container mt-4">
