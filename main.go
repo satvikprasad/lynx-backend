@@ -17,7 +17,7 @@ type MetricRequest struct {
 
 func main() {
 	if err := godotenv.Load(); err != nil {
-		log.Println("Error loading .env file")
+		log.Println("Didn't find a .env file")
 	}
 
 	port := os.Getenv("PORT")

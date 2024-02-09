@@ -6,7 +6,6 @@ import (
 	"lynx-backend/models"
 	"os"
 
-	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -17,10 +16,6 @@ type MongoDB struct {
 }
 
 func CreateMongoDB() (DB, error) {
-	if err := godotenv.Load(); err != nil {
-		fmt.Println("Error loading .env file")
-	}
-
 	uri := os.Getenv("MONGODB_URI")
 	if uri == "" {
 		return nil, fmt.Errorf("$MONGODB_URI must be set")
