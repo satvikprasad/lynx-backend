@@ -47,6 +47,7 @@ func CreateServer(db db.DB, port string) *Server {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/**/*")
 	r.Static("/static/assets", "./assets")
+	r.Static("/static/downloads/osx", "./downloads/osx")
 
 	config := cors.DefaultConfig()
 	config.AllowAllOrigins = true
